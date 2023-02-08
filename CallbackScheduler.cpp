@@ -3,7 +3,7 @@
 CallbackScheduler::ScheduledCallback CallbackScheduler::callbacks[MAX_CALLBACK_ARRAY_SIZE];
 unsigned int CallbackScheduler::num_callbacks = 0;
 
-void CallbackScheduler::addCallback(unsigned long callback_time_ms, Callback callback) {
+void CallbackScheduler::scheduleCallback(unsigned long callback_time_ms, Callback callback) {
   if (num_callbacks >= MAX_CALLBACK_ARRAY_SIZE) {
     return;
   }

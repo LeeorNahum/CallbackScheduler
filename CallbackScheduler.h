@@ -11,7 +11,7 @@ class CallbackScheduler {
   public:
     using Callback = void (*)();
 
-    static void addCallback(unsigned long callback_time_ms, Callback callback);
+    static void scheduleCallback(unsigned long callback_time_ms, Callback callback);
     static void update();
 
   protected:
