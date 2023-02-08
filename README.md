@@ -8,28 +8,25 @@ This library enables you to schedule callbacks to be executed at a specific time
 
 ## Usage
 
-Here is an example of how to use PinInit:
+Here is an example of how to use the CallbackScheduler library:
 
 ``` C++
-#include <PinInit.h>
-
-#define LED_PIN 13
-
-#define BUTTON_1 2
-#define BUTTON_2 3
-#define BUTTON_3 4
-
-#define BUTTON_4 5
+#include <CallbackScheduler.h>
 
 void setup() {
-  PinInit(
-    output, LED_PIN,
-    input_pullup, BUTTON_1, BUTTON_2, BUTTON_3,
-    input, BUTTON_4
-  );
+  CallbackScheduler::addCallback(callback1, 1000);
+  CallbackScheduler::addCallback(callback2, 2000);
 }
 
 void loop() {
-  // Your code here
+  CallbackScheduler::update();
+}
+
+void callback1() {
+  Serial.println("Callback 1 called!");
+}
+
+void callback2() {
+  Serial.println("Callback 2 called!");
 }
 ```
