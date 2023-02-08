@@ -4,7 +4,7 @@ An Arduino library for scheduling callbacks to run after a certain amount of tim
 
 ## Description
 
-This library enables you to schedule callbacks to be executed at a specific time in the future. It provides an easy way to add time-sensitive functionality to your sketches. You can specify the exact amount of time until a callback function should be executed which will be handled by the library.
+The CallbackScheduler library enables you to schedule callbacks to be executed at a specific time in the future. It provides an easy way to add time-sensitive functionality to your sketches. You can specify the exact amount of time until a callback function should be executed which will be handled by the library.
 
 ## Usage
 
