@@ -14,8 +14,8 @@ Here is an example of how to use the CallbackScheduler library:
 #include <CallbackScheduler.h>
 
 void setup() {
-  CallbackScheduler::addCallback(callback1, 1000);
-  CallbackScheduler::addCallback(callback2, 2000);
+  CallbackScheduler::addCallback(1000, callback1);
+  CallbackScheduler::addCallback(2000, callback2);
 }
 
 void loop() {

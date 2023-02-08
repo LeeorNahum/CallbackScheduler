@@ -3,13 +3,13 @@
 CallbackScheduler::ScheduledCallback CallbackScheduler::callbacks[MAX_CALLBACK_ARRAY_SIZE];
 unsigned int CallbackScheduler::num_callbacks = 0;
 
-void CallbackScheduler::addCallback(Callback callback, unsigned long callback_time_ms) {
+void CallbackScheduler::addCallback(unsigned long callback_time_ms, Callback callback) {
   if (num_callbacks >= MAX_CALLBACK_ARRAY_SIZE) {
     return;
   }
 
-  callbacks[num_callbacks].callback = callback;
-  callbacks[num_callbacks++].callback_time_ms = millis() + callback_time_ms;
+  callbacks[num_callbacks].callback_time_ms = millis() + callback_time_ms;
+  callbacks[num_callbacks++].callback = callback;
 }
 
 void CallbackScheduler::update() {
