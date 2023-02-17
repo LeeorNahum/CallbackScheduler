@@ -1,8 +1,6 @@
 #ifndef CALLBACKSCHEDULER_H
 #define CALLBACKSCHEDULER_H
 
-#include <Arduino.h>
-
 #ifndef MAX_CALLBACK_ARRAY_SIZE
 #define MAX_CALLBACK_ARRAY_SIZE 10
 #endif
