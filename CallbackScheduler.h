@@ -5,7 +5,7 @@
 #define MAX_CALLBACK_ARRAY_SIZE 10
 #endif
 
-#include <Arduino.h>
+#include <wiring.c>
 
 class CallbackScheduler {
   public:
