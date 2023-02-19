@@ -1,6 +1,6 @@
 #include "CallbackScheduler.h"
 
-CallbackScheduler::ScheduledCallback CallbackScheduler::callbacks[MAX_CALLBACK_ARRAY_SIZE];
+CallbackScheduler::ScheduledCallback CallbackScheduler::callbacks[MAX_CALLBACK_ARRAY_SIZE] = {nullptr};
 unsigned int CallbackScheduler::num_callbacks = 0;
 
 void CallbackScheduler::scheduleCallback(unsigned long callback_time_ms, Callback callback) {
