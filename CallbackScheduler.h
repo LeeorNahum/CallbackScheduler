@@ -5,6 +5,8 @@
 #define MAX_CALLBACK_ARRAY_SIZE 10
 #endif
 
+#include <Arduino.h>
+
 class CallbackScheduler {
   public:
     using Callback = void (*)();
@@ -12,7 +14,7 @@ class CallbackScheduler {
     static void scheduleCallback(unsigned long callback_time_ms, Callback callback);
     static void update();
 
-  protected:
+  private:
     struct ScheduledCallback {
       Callback callback;
       unsigned long callback_time_ms;
