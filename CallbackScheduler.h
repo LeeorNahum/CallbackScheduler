@@ -1,27 +1,25 @@
 #ifndef CALLBACKSCHEDULER_H
 #define CALLBACKSCHEDULER_H
 
-#ifndef MAX_CALLBACK_ARRAY_SIZE
-#define MAX_CALLBACK_ARRAY_SIZE 10
-#endif
-
 #include <Arduino.h>
+#include <vector>
 
 class CallbackScheduler {
   public:
-    using Callback = void (*)();
-
-    static void scheduleCallback(unsigned long callback_time_ms, Callback callback);
-    static void update();
-
+    using Callback = std::function<void()>;
+    
+    void scheduleCallback(unsigned long callback_duration, Callback callback); // TODO add optional override enum flags which either replace, add (default?), or [dont add if it already exists]
+    void update();
+    
   private:
     struct ScheduledCallback {
       Callback callback;
-      unsigned long callback_time_ms;
+      unsigned long callback_duration;
     };
-
-    static ScheduledCallback callbacks[MAX_CALLBACK_ARRAY_SIZE];
-    static unsigned int num_callbacks;
+    
+    std::vector<ScheduledCallback> callbacks;
 };
+
+extern CallbackScheduler Scheduler;
 
 #endif

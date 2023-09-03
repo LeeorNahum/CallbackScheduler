@@ -1,30 +1,27 @@
 #include "CallbackScheduler.h"
 
-CallbackScheduler::ScheduledCallback CallbackScheduler::callbacks[MAX_CALLBACK_ARRAY_SIZE] = {nullptr};
-unsigned int CallbackScheduler::num_callbacks = 0;
-
-void CallbackScheduler::scheduleCallback(unsigned long callback_time_ms, Callback callback) {
-  if (num_callbacks >= MAX_CALLBACK_ARRAY_SIZE) {
-    return;
-  }
-
-  callbacks[num_callbacks].callback_time_ms = millis() + callback_time_ms;
-  callbacks[num_callbacks++].callback = callback;
+void CallbackScheduler::scheduleCallback(unsigned long callback_duration, Callback callback) {
+  ScheduledCallback scheduled;
+  scheduled.callback_duration = millis() + callback_duration;
+  scheduled.callback = callback;
+  
+  this->callbacks.push_back(scheduled);
 }
 
 void CallbackScheduler::update() {
+  if (this->callbacks.empty()) {
+    return;
+  }
+  
   unsigned long current_time = millis();
-
-  for (int i = 0; i < num_callbacks;) {
-    if (current_time >= callbacks[i].callback_time_ms) {
-      callbacks[i].callback();
-      num_callbacks--;
-      if (i != num_callbacks) {
-        callbacks[i] = callbacks[num_callbacks];
-      }
+  
+  for (size_t i = 0; i < this->callbacks.size();) {
+    if (current_time >= this->callbacks[i].callback_duration) {
+      this->callbacks[i].callback();
+      this->callbacks.erase(this->callbacks.begin() + i);
     }
     else {
-      i++;
+      ++i;
     }
   }
 }
