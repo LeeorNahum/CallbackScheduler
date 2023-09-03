@@ -22,11 +22,11 @@ void callback2() {
 }
 
 void setup() {
-  CallbackScheduler::scheduleCallback(1000, callback1);
-  CallbackScheduler::scheduleCallback(2000, callback2);
+  Scheduler.scheduleCallback(1000, callback1);
+  Scheduler.scheduleCallback(2000, callback2);
 }
 
 void loop() {
-  CallbackScheduler::update();
+  Scheduler.update();
 }
 ```
